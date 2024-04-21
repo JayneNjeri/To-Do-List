@@ -9,12 +9,12 @@ class MyButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
       onPressed: onPressed,
-      child: Text(text),
-      color: Colors.grey[700],
-      textColor: Colors.black,
+      color: const Color.fromARGB(255, 11, 46, 74),
+      textColor: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
       ),
+      child: Text(text),
     );
   }
 }

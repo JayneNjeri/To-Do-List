@@ -32,7 +32,7 @@ class ToDoTile extends StatelessWidget {
             SlidableAction(
               onPressed: (context) => deleteFunction!(),
               icon: Icons.delete,
-              backgroundColor: Color.fromARGB(255, 71, 6, 1),
+              backgroundColor: Color.fromARGB(255, 2, 28, 50),
               borderRadius: BorderRadius.all(Radius.circular(10)),
             )
           ],
@@ -51,13 +51,13 @@ class ToDoTile extends StatelessWidget {
               Checkbox(
                 value: isChecked,
                 onChanged: onChanged,
-                activeColor: Colors.black,
+                activeColor: Color.fromARGB(255, 121, 170, 210),
               ),
               //Task Name
               Text(
                 taskName,
                 style: TextStyle(
-                  color: Colors.black,
+                  color: Colors.white,
                   decoration: isChecked
                       ? TextDecoration.lineThrough
                       : TextDecoration.none,
@@ -66,7 +66,7 @@ class ToDoTile extends StatelessWidget {
             ],
           ),
           decoration: BoxDecoration(
-              color: Colors.grey[800],
+              color: const Color.fromARGB(255, 11, 46, 74),
               borderRadius: BorderRadius.all(Radius.circular(10))),
         ),
       ),
