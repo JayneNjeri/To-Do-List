@@ -1,4 +1,4 @@
-![image](https://github.com/JayneNjeri/To-Do-List/assets/115714936/993aad8d-4e4a-4707-b92f-aeeb459510b9)# to_do_list
+# to_do_list
 
 My first simple application using Flutter
 
