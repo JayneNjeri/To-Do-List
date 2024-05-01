@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:to_do_list/pages/signup.dart';
 
 import 'pages/home_page.dart';
 
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
           buttonColor: Color.fromARGB(255, 11, 46, 74),
         ),
       ),
-      home: HomePage(),
+      home: SignUp(),
     );
   }
 }

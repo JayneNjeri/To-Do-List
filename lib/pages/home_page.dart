@@ -76,7 +76,7 @@ class HomePageState extends State<HomePage> {
             createNewTask();
           },
           backgroundColor: const Color.fromARGB(255, 121, 170, 210),
-          child: Icon(Icons.add),
+          child: Icon(Icons.add, color: Colors.black),
         ),
         body: ListView.builder(
           itemCount: toDoList.length,
