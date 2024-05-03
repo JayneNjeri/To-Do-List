@@ -1,8 +1,15 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:to_do_list/util/dialog_box.dart';
 import 'package:to_do_list/util/to_do_tile.dart';
+
+import 'notifications.dart';
+import 'profile.dart';
+import 'support.dart';
+import 'theme.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,6 +19,7 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
+  //final scaffoldkey = GlobalKey<ScaffoldState>();
   List toDoList = [
     ["Drink Water", false],
     ["Take a walk", false]
@@ -70,6 +78,136 @@ class HomePageState extends State<HomePage> {
           ),
           centerTitle: true,
           backgroundColor: Color.fromARGB(255, 1, 21, 37),
+        ),
+        drawer: Drawer(
+          child: Material(
+            elevation: 0.0,
+            color: Color.fromARGB(255, 11, 46, 74),
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                SizedBox(
+                  height: 25,
+                ),
+                Row(
+                  children: const [
+                    CircleAvatar(
+                      radius: 30,
+                      backgroundImage: AssetImage('assets/R.jpeg'),
+                    ),
+                    SizedBox(width: 10),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Sherryl Mwangi',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 25,
+                          ),
+                        ),
+                        Text(
+                          'test123@gmail.com',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                Divider(
+                  color: Colors.white,
+                ),
+                ListTile(
+                  leading: Icon(Icons.notifications_active_outlined,
+                      color: Colors.white),
+                  title: Text(
+                    'Manage Notifications',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  //close the drawer before
+                  onTap: () {
+                    Navigator.pop(context);
+
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => NotificationsPage()));
+                  },
+                ),
+                ListTile(
+                  leading: Icon(Icons.person_outlined, color: Colors.white),
+                  title: Text(
+                    'Profile',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => ProfilePage()));
+                  },
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: ListTile(
+                        leading: Icon(Icons.color_lens_outlined,
+                            color: Colors.white),
+                        title: Text(
+                          'Dark Mode',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const Spacer(),
+                    Switch(
+                      value: true,
+                      onChanged: (value) {},
+                      activeColor: Color.fromARGB(255, 121, 170, 210),
+                    ),
+                  ],
+                ),
+                ListTile(
+                  leading:
+                      Icon(Icons.help_center_outlined, color: Colors.white),
+                  title: Text(
+                    'Help & Support',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.pop(context);
+                    MaterialPageRoute(builder: (context) => SupportPage());
+                  },
+                ),
+                Divider(
+                  color: Colors.white,
+                ),
+                ListTile(
+                  leading: Icon(Icons.logout_outlined,
+                      color: const Color.fromARGB(255, 232, 37, 23)),
+                  title: Text(
+                    'Log Out',
+                    style: TextStyle(
+                      color: const Color.fromARGB(255, 232, 37, 23),
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+            ),
+          ),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
