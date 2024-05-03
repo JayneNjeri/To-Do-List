@@ -87,33 +87,44 @@ class HomePageState extends State<HomePage> {
               padding: EdgeInsets.zero,
               children: [
                 SizedBox(
-                  height: 25,
+                  height: 30,
                 ),
                 Row(
-                  children: const [
+                  children: [
                     CircleAvatar(
                       radius: 30,
                       backgroundImage: AssetImage('assets/R.jpeg'),
                     ),
                     SizedBox(width: 10),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Sherryl Mwangi',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                          ),
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ProfilePage()));
+                        },
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            Text(
+                              'Sherryl Mwangi',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 25,
+                              ),
+                            ),
+                            Text(
+                              'test123@gmail.com',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ],
                         ),
-                        Text(
-                          'test123@gmail.com',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                   ],
                 ),
