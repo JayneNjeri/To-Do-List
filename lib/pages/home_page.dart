@@ -1,15 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:flutter/cupertino.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:to_do_list/util/dialog_box.dart';
 import 'package:to_do_list/util/to_do_tile.dart';
-
-import 'notifications.dart';
-import 'profile.dart';
+import 'edit_profile.dart';
+import '../notifications.dart';
 import 'support.dart';
-import 'theme.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -84,56 +82,86 @@ class HomePageState extends State<HomePage> {
             elevation: 0.0,
             color: Color.fromARGB(255, 11, 46, 74),
             child: ListView(
-              padding: EdgeInsets.zero,
+              padding: EdgeInsets.all(8),
               children: [
-                SizedBox(
-                  height: 30,
-                ),
-                Row(
+                Column(
                   children: [
-                    CircleAvatar(
-                      radius: 30,
-                      backgroundImage: AssetImage('assets/R.jpeg'),
-                    ),
-                    SizedBox(width: 10),
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.pop(context);
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ProfilePage()));
-                        },
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text(
-                              'Sherryl Mwangi',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 25,
-                              ),
-                            ),
-                            Text(
-                              'test123@gmail.com',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 15,
-                              ),
-                            ),
-                          ],
+                    Stack(
+                      children: [
+                        const Center(
+                          child: CircleAvatar(
+                            radius: 50,
+                            backgroundImage: AssetImage('assets/R.jpeg'),
+                          ),
                         ),
+                        Positioned(
+                            bottom: 0,
+                            right: 99,
+                            child: Container(
+                              width: 30,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: Icon(Icons.edit,
+                                  color: Colors.black, size: 20),
+                            )),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    const Text(
+                      'Sherryl Mwangi',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
                       ),
                     ),
+                    const SizedBox(height: 10),
+                    const Text('test123@gmail.com',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                        )),
+                    const SizedBox(height: 10),
+                    SizedBox(
+                        width: 200,
+                        height: 60,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => EditProfile()));
+                          },
+                          // ignore: sort_child_properties_last
+                          child: const Text('Edit Profile',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 15)),
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                const Color.fromARGB(255, 11, 46, 74)),
+                            padding: MaterialStateProperty.all<EdgeInsets>(
+                              const EdgeInsets.symmetric(
+                                  horizontal: 50, vertical: 20),
+                            ),
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15.0),
+                              ),
+                            ),
+                          ),
+                        ))
                   ],
                 ),
                 Divider(
                   color: Colors.white,
                 ),
                 ListTile(
-                  leading: Icon(Icons.notifications_active_outlined,
-                      color: Colors.white),
+                  leading:
+                      Icon(Icons.notifications_outlined, color: Colors.white),
                   title: Text(
                     'Manage Notifications',
                     style: TextStyle(
@@ -150,20 +178,6 @@ class HomePageState extends State<HomePage> {
                             builder: (context) => NotificationsPage()));
                   },
                 ),
-                ListTile(
-                  leading: Icon(Icons.person_outlined, color: Colors.white),
-                  title: Text(
-                    'Profile',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => ProfilePage()));
-                  },
-                ),
                 Row(
                   children: [
                     Expanded(
@@ -178,7 +192,6 @@ class HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
-                    const Spacer(),
                     Switch(
                       value: true,
                       onChanged: (value) {},
@@ -212,8 +225,8 @@ class HomePageState extends State<HomePage> {
                       color: const Color.fromARGB(255, 232, 37, 23),
                     ),
                   ),
-                  onTap: () {
-                    Navigator.pop(context);
+                  onTap: () async {
+                    await FirebaseAuth.instance.signOut();
                   },
                 ),
               ],

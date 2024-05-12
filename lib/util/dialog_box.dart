@@ -44,7 +44,18 @@ class DialogBox extends StatelessWidget {
               Row(
                 children: [
                   //save buton
-                  MyButton(text: "Save", onPressed: onSaved),
+                  MyButton(
+                      text: "Save",
+                      onPressed: () {
+                        if (controller.text.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text('Please enter a task name')),
+                          );
+                        } else {
+                          onSaved();
+                        }
+                      }),
                   const SizedBox(width: 50),
 
                   //cancel button
